@@ -3,6 +3,7 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from msedge.selenium_tools import Edge, EdgeOptions
+import os
 
 
 def get_tweet_data(card):
@@ -40,9 +41,9 @@ driver.get("https://www.twitter.com/login")
 driver.implicitly_wait(10)
 
 email = driver.find_element_by_xpath('//input[@name="session[username_or_email]"]')
-email.send_keys("jacobsbusayo@gmail.com")
+email.send_keys(str(os.getenv('EMAIL')))
 
-my_password = "51xelarats%!"
+my_password = str(os.getenv('PASSWORD'))
 password = driver.find_element_by_xpath('//input[@name="session[password]"]')
 password.send_keys(my_password)
 password.send_keys(Keys.RETURN)
